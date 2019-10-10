@@ -6,7 +6,8 @@ Misc. bash scripts that i write with ❤️ for my work.
 ```
 .
 ├── README.md
-└── lamp.sh
+├── lamp.sh
+└── lemp.sh
 
 ```
 
