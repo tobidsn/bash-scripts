@@ -27,12 +27,7 @@ installApache() {
     # Apache
     echo -e "\n ${Cyan} Installing Apache.. ${Color_Off}"
     sudo apt -qy install apache2 apache2-doc libexpat1 ssl-cert
-    sudo ufw allow in "Apache Full"
     # check Apache configuration: apachectl configtest
-}
-
-installCurl() {
-    sudo apt install curl
 }
 
 installLetsEncryptCertbot() {
@@ -145,7 +140,6 @@ restartApache() {
 # RUN
 update
 installApache
-installCurl
 installLetsEncryptCertbot
 installPHP
 installMySQL

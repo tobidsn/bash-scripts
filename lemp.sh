@@ -27,13 +27,6 @@ installNginx() {
     # Nginx
     echo -e "\n ${Cyan} Installing Nginx.. ${Color_Off}"
     sudo apt -qy install nginx
-    sudo ufw allow 'Nginx HTTP'
-    systemctl start nginx
-    systemctl enable nginx
-}
-
-installCurl() {
-    sudo apt install curl
 }
 
 installLetsEncryptCertbot() {
@@ -98,14 +91,16 @@ restartNginx() {
     # Restart Nginx
     echo -e "\n ${Cyan} Restarting Nginx.. ${Color_Off}"
     sudo systemctl reload nginx
+    systemctl enable nginx
     sudo systemctl reload mysql
+    systemctl enable mysql
     sudo systemctl reload php-fpm
+    systemctl enable php-fpm
 }
 
 # RUN
 update
 installNginx
-installCurl
 installLetsEncryptCertbot
 installPHP
 installMySQL
