@@ -47,7 +47,7 @@ installPHP() {
     # PHP7 (latest)
     sudo add-apt-repository universe
     sudo apt update
-    sudo apt -qy install php php-fpm php-curl php-cli php-mcrypt php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-xml php-zip
+    sudo apt -qy install php php-fpm php-curl php-cli php-dev php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-xml php-zip
     systemctl start php-fpm
     systemctl enable php-fpm
 }

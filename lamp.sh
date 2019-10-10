@@ -48,7 +48,7 @@ installPHP() {
 
 
     # PHP7 (latest)
-    sudo apt -qy install php php-common libapache2-mod-php php-curl php-cli php-dev php-mcrypt php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-pspell php-recode php-xml php-zip
+    sudo apt -qy install php php-common libapache2-mod-php php-curl php-cli php-dev php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-pspell php-recode php-xml php-zip
 }
 
 installPHP71() {
@@ -59,7 +59,7 @@ installPHP71() {
     sudo apt install software-properties-common
     sudo add-apt-repository ppa:ondrej/php
     sudo apt update
-    sudo apt install php7.1 php7.1-common php7.1-opcache php7.1-mcrypt php7.1-cli php7.1-gd php7.1-curl php7.1-mysql php7.1-dev php7.1-gettext php7.1-mbstring php7.1-xml php7.1-zip
+    sudo apt install php7.1 php7.1-common php7.1-opcache php7.1-cli php7.1-gd php7.1-curl php7.1-mysql php7.1-dev php7.1-gettext php7.1-mbstring php7.1-xml php7.1-zip
 }
 
 installPHP73() {
@@ -70,7 +70,7 @@ installPHP73() {
     sudo apt install software-properties-common
     sudo add-apt-repository ppa:ondrej/php
     sudo apt update
-    sudo apt install php7.3 php7.3-common php7.3-opcache php7.3-mcrypt php7.3-cli php7.3-gd php7.3-curl php7.3-mysql php7.3-dev php7.3-gettext php7.3-mbstring php7.3-xml php7.3-zip
+    sudo apt install php7.3 php7.3-common php7.3-opcache php7.3-cli php7.3-gd php7.3-curl php7.3-mysql php7.3-dev php7.3-gettext php7.3-mbstring php7.3-xml php7.3-zip
 }
 
 installMySQL() {
