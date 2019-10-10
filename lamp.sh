@@ -150,3 +150,6 @@ setPermissions
 restartApache
 
 echo -e "\n${Green} SUCCESS! MySQL password is: ${PASS_MYSQL_ROOT} ${Color_Off}"
+
+IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+echo -e $"Complete! \nYou now can test new host is: http://${IP_ADDRESS}"
