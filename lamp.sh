@@ -156,5 +156,3 @@ setPermissions
 restartApache
 
 echo -e "\n${Green} SUCCESS! MySQL password is: ${PASS_MYSQL_ROOT} ${Color_Off}"
-
-# Source Fork = https://github.com/aamnah/bash-scripts/blob/master/install/amp_debian.sh

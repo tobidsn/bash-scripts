@@ -16,11 +16,23 @@ Install Apache, Curl, LetsEncrypt Certbot, MySQL, Secure MySQL, PHP, phpMyAdmin,
 
 - requires no user input
 - sets a MySQL password and shows in console
-- does not overwrite the MySQL password if it is already set
-- select php version
 
 ```bash
 curl https://raw.githubusercontent.com/tobidsn/bash-scripts/master/lamp.sh | bash
 chmod -x ./lamp.sh
 bash ./lamp.sh
+``
+
+```
+## lemp.sh
+
+Install Nginx, Curl, LetsEncrypt Certbot, MySQL, Secure MySQL, Latest PHP and ser Permissions
+
+- requires no user input
+- sets a MySQL password and shows in console
+
+```bash
+curl https://raw.githubusercontent.com/tobidsn/bash-scripts/master/lemp.sh | bash
+chmod -x ./lemp.sh
+bash ./lemp.sh
 ``
