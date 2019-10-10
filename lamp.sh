@@ -14,8 +14,6 @@ Cyan='\033[0;36m'         # Cyan
 # GENERATE PASSOWRDS
 # sudo apt -qy install openssl # openssl used for generating a truly random password
 PASS_MYSQL_ROOT=`openssl rand -base64 12` # this you need to save
-PASS_PHPMYADMIN_APP=`openssl rand -base64 12` # can be random, won't be used again
-PASS_PHPMYADMIN_ROOT="${PASS_MYSQL_ROOT}" # Your MySQL root pass
 
 update() {
     # Update system repos
@@ -76,40 +74,17 @@ installPHP73() {
 installMySQL() {
     # MySQL
     echo -e "\n ${Cyan} Installing MySQL.. ${Color_Off}"
-
-    # set password with `debconf-set-selections` so you don't have to enter it in prompt and the script continues
-    sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password ${PASS_MYSQL_ROOT}" # new password for the MySQL root user
-    sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${PASS_MYSQL_ROOT}" # repeat password for the MySQL root user
-
-    # DEBIAN_FRONTEND=noninteractive # by setting this to non-interactive, no questions will be asked
     DEBIAN_FRONTEND=noninteractive sudo apt -qy install mysql-server
 }
 
 secureMySQL() {
     # secure MySQL install
-    echo -e "\n ${Cyan} Securing MySQL.. ${Color_Off}"
-
-    mysql --user=root --password=${PASS_MYSQL_ROOT} << EOFMYSQLSECURE
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
-FLUSH PRIVILEGES;
-EOFMYSQLSECURE
-
-# NOTE: Skipped validate_password because it'll cause issues with the generated password in this script
+    echo -e "\n ${Cyan} For Securing MySQL please read tutorial: https://medium.com/@tobidsn/secure-mysql-installation-b30b8531a5d ${Color_Off}"
 }
 
 installPHPMyAdmin() {
     # PHPMyAdmin
     echo -e "\n ${Cyan} Installing PHPMyAdmin.. ${Color_Off}"
-
-    # set answers with `debconf-set-selections` so you don't have to enter it in prompt and the script continues
-    sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" # Select Web Server
-    sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true" # Configure database for phpmyadmin with dbconfig-common
-    sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password ${PASS_PHPMYADMIN_APP}" # Set MySQL application password for phpmyadmin
-    sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password ${PASS_PHPMYADMIN_APP}" # Confirm application password
-    sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/admin-pass password ${PASS_MYSQL_ROOT}" # MySQL Root Password
-    sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/internal/skip-preseed boolean true"
 
     DEBIAN_FRONTEND=noninteractive sudo apt -qy install phpmyadmin
 }
@@ -143,13 +118,14 @@ installApache
 installLetsEncryptCertbot
 installPHP
 installMySQL
-secureMySQL
 installPHPMyAdmin
 enableMods
 setPermissions
 restartApache
+secureMySQL
 
-echo -e "\n${Green} SUCCESS! MySQL password is: ${PASS_MYSQL_ROOT} ${Color_Off}"
+echo -e "\n${Green} Sample secure MySQL password is: ${PASS_MYSQL_ROOT} ${Color_Off}"
+
 
 IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
 echo -e $"Complete! \nYou now can test new host is: http://${IP_ADDRESS}"
