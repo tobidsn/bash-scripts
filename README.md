@@ -21,7 +21,7 @@ Install Apache, Curl, LetsEncrypt Certbot, MySQL, Secure MySQL, PHP, phpMyAdmin,
 Install with wget
 
 ```bash
-wget https://raw.githubusercontent.com/tobidsn/bash-scripts/master/lamp.sh | bash
+wget https://raw.githubusercontent.com/tobidsn/bash-scripts/master/lamp.sh
 chmod -x ./lamp.sh
 bash ./lamp.sh
 ``
@@ -44,7 +44,7 @@ Install Nginx, Curl, LetsEncrypt Certbot, MySQL, Secure MySQL, Latest PHP and se
 Install with wget
 
 ```bash
-wget https://raw.githubusercontent.com/tobidsn/bash-scripts/master/lemp.sh | bash
+wget https://raw.githubusercontent.com/tobidsn/bash-scripts/master/lemp.sh
 chmod -x ./lemp.sh
 bash ./lemp.sh
 ``
