@@ -27,7 +27,12 @@ installApache() {
     # Apache
     echo -e "\n ${Cyan} Installing Apache.. ${Color_Off}"
     sudo apt -qy install apache2 apache2-doc libexpat1 ssl-cert
+    sudo ufw allow in "Apache Full"
     # check Apache configuration: apachectl configtest
+}
+
+installCurl() {
+    sudo apt install curl
 }
 
 installLetsEncryptCertbot() {
@@ -35,7 +40,7 @@ installLetsEncryptCertbot() {
     echo -e "\n ${Cyan} Installing Let's Encrypt SSL.. ${Color_Off}"
 
     sudo apt update # update repo sources
-    udo apt install -y software-properties-common # required in order to add a repo
+    sudo apt install -y software-properties-common # required in order to add a repo
     sudo add-apt-repository ppa:certbot/certbot -y # add Certbot repo
     sudo apt update # update repo sources
     sudo apt install -y python-certbot-apache # install Certbot
@@ -48,7 +53,7 @@ installPHP() {
 
 
     # PHP7 (latest)
-    sudo apt -qy install php php-common libapache2-mod-php php-curl php-dev php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-pspell php-recode php-xml php-zip
+    sudo apt -qy install php php-common libapache2-mod-php php-curl php-cli php-dev php-mcrypt php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-pspell php-recode php-xml php-zip
 }
 
 installPHP71() {
@@ -128,10 +133,7 @@ setPermissions() {
     # Permissions
     echo -e "\n ${Cyan} Setting Ownership for /var/www.. ${Color_Off}"
     sudo chown -R www-data:www-data /var/www
-}
-
-installCurl() {
-    sudo apt install curl
+    sudo chmod -R 0755 /var/www
 }
 
 restartApache() {
