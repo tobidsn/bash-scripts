@@ -48,36 +48,18 @@ installPHP() {
     sudo add-apt-repository universe
     sudo apt update
     sudo apt -qy install php php-fpm php-curl php-cli php-dev php-gd php-gettext php-imagick php-intl php-mbstring php-mysql php-pear php-xml php-zip
-    systemctl start php-fpm
-    systemctl enable php-fpm
 }
 
 installMySQL() {
     # MySQL
     echo -e "\n ${Cyan} Installing MySQL.. ${Color_Off}"
-
-    # set password with `debconf-set-selections` so you don't have to enter it in prompt and the script continues
-    sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password ${PASS_MYSQL_ROOT}" # new password for the MySQL root user
-    sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password ${PASS_MYSQL_ROOT}" # repeat password for the MySQL root user
-
     # DEBIAN_FRONTEND=noninteractive # by setting this to non-interactive, no questions will be asked
     DEBIAN_FRONTEND=noninteractive sudo apt -qy install mysql-server
-    systemctl start mysql
-    systemctl enable mysql
 }
 
 secureMySQL() {
     # secure MySQL install
-    echo -e "\n ${Cyan} Securing MySQL.. ${Color_Off}"
-
-    mysql --user=root --password=${PASS_MYSQL_ROOT} << EOFMYSQLSECURE
-DELETE FROM mysql.user WHERE user='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DELETE FROM mysql.user WHERE user='';
-DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
-FLUSH PRIVILEGES;
-EOFMYSQLSECURE
-
-# NOTE: Skipped validate_password because it'll cause issues with the generated password in this script
+    echo -e "\n ${Cyan} For Securing MySQL please read tutorial: https://medium.com/@tobidsn/secure-mysql-installation-b30b8531a5d ${Color_Off}"
 }
 
 setPermissions() {

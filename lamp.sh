@@ -82,13 +82,6 @@ secureMySQL() {
     echo -e "\n ${Cyan} For Securing MySQL please read tutorial: https://medium.com/@tobidsn/secure-mysql-installation-b30b8531a5d ${Color_Off}"
 }
 
-installPHPMyAdmin() {
-    # PHPMyAdmin
-    echo -e "\n ${Cyan} Installing PHPMyAdmin.. ${Color_Off}"
-
-    DEBIAN_FRONTEND=noninteractive sudo apt -qy install phpmyadmin
-}
-
 enableMods() {
     # Enable mod_rewrite, required for WordPress permalinks and .htaccess files
     echo -e "\n ${Cyan} Enabling Modules.. ${Color_Off}"
@@ -118,7 +111,6 @@ installApache
 installLetsEncryptCertbot
 installPHP
 installMySQL
-installPHPMyAdmin
 enableMods
 setPermissions
 restartApache
