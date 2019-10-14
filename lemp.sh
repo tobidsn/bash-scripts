@@ -14,8 +14,6 @@ Cyan='\033[0;36m'         # Cyan
 # GENERATE PASSOWRDS
 # sudo apt -qy install openssl # openssl used for generating a truly random password
 PASS_MYSQL_ROOT=`openssl rand -base64 12` # this you need to save
-PASS_PHPMYADMIN_APP=`openssl rand -base64 12` # can be random, won't be used again
-PASS_PHPMYADMIN_ROOT="${PASS_MYSQL_ROOT}" # Your MySQL root pass
 
 update() {
     # Update system repos
@@ -86,10 +84,12 @@ installNginx
 installLetsEncryptCertbot
 installPHP
 installMySQL
-secureMySQL
 setPermissions
 restartNginx
+secureMySQL
 
-echo -e "\n${Green} SUCCESS! MySQL password is: ${PASS_MYSQL_ROOT} ${Color_Off}"
+echo -e "\n${Green} Sample secure MySQL password is: ${PASS_MYSQL_ROOT} ${Color_Off}"
 
-# Source Fork = https://github.com/aamnah/bash-scripts/blob/master/install/amp_debian.sh
+
+IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+echo -e $"Complete! \nYou now can test new host is: http://${IP_ADDRESS}"

@@ -13,7 +13,7 @@ Misc. bash scripts that i write with ❤️ for my work.
 
 ## lamp.sh
 
-Install Apache, Curl, LetsEncrypt Certbot, MySQL, Secure MySQL, PHP, phpMyAdmin, enable Mods and set Permissions
+Install Apache, Curl, LetsEncrypt Certbot, MySQL, Secure MySQL, PHP, enable Mods and set Permissions
 
 - requires no user input
 - sets a MySQL password and shows in console
